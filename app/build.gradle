@@ -42,13 +42,10 @@ def version = gitInfo.lastTag.substring(1)
 // n1.n2[.n3]
 def specificationVersion = version
 
-def snapshot = '@SNAPSHOT'
-if (gitInfo.commitDistance == 0) {
-    snapshot = ''
-}
+def snapshot = gitInfo.commitDistance == 0 ? '' : '@SNAPSHOT' 
 
 // n1.n2[.n3][_<patch_number>|-<milestone_name>]
-def implementationVersion = version + '_' + gitInfo.gitHash[0..7] + "-" + gitInfo.branchName + snapshot
+def implementationVersion = version + '_' + gitInfo.gitHash[0..7] + snapshot + "-" + gitInfo.branchName 
 jar {
     manifest {
         attributes 'Main-Class': 'test_gradle.App'
