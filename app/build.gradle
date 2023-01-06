@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    // 0.13.0 or 0.14.0 ?
     id 'com.palantir.git-version' version '0.12.3'
 }
 
@@ -35,6 +36,7 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+// git describe --tags --always --first-parent
 def gitInfo = versionDetails()
 version = gitInfo.lastTag.substring(1)
 // n1.n2[.n3]
