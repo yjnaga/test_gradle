@@ -10,5 +10,9 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        final String specificationVersion = App.class.getPackage().getSpecificationVersion();
+        final String implementationVersion = App.class.getPackage().getImplementationVersion();
+        System.out.println("SpecificationVersion =[" + specificationVersion + "]");
+        System.out.println("ImplementationVersion=[" + implementationVersion + "]");
     }
 }

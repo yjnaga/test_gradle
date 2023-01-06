@@ -37,12 +37,14 @@ tasks.named('test') {
 
 def gitInfo = versionDetails()
 version = gitInfo.lastTag.substring(1)
-def implementationVersion = version + '.' + gitInfo.gitHash[0..7]
+// n1.n2[.n3]
+def specificationVersion = version
+// n1.n2[.n3][_<patch_number>|-<milestone_name>]
+def implementationVersion = version + '_' + gitInfo.gitHash[0..7] + "-" + gitInfo.branchName
 jar {
     manifest {
-        attributes 'Main-Class': 'HelloWorld'
-        attributes(
-            'Implementation-Version' : implementationVersion
-        )
+        attributes 'Main-Class': 'test_gradle.App'
+        attributes 'Specification-Version'  : specificationVersion
+        attributes 'Implementation-Version' : implementationVersion
     }
 }
