@@ -3,3 +3,7 @@
 
 # Ignore Gradle build output directory
 build
+
+version_info
+version_info.o
+obj/
